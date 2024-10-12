@@ -11,6 +11,18 @@ A simple Streamlit app template for you to modify!
    ```
    $ pip install -r requirements.txt
    ```
+2. adapt the environment to include and git to manage chrome
+   ```
+   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+   git lfs install
+   git lfs track "google-chrome.deb"
+   ```
+to add to git repo
+
+   git add google-chrome.deb
+   git add .gitattributes
+   git commit -m "Add google-chrome.deb using Git LFS"
+
 
 2. Run the app
 

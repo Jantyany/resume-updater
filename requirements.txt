@@ -1,1 +1,11 @@
 streamlit
+selenium
+boto3
+python-docx
+openai
+webdriver_manager
+seaborn
+beautifulsoup4
+chromedriver-autoinstaller
+
+
