@@ -29,3 +29,7 @@ to add to git repo
    ```
    $ streamlit run streamlit_app.py
    ```
+4. considering authentication
+blog.streamlit.io/streamlit-authenticator-part-1-adding-an-authentication-component-to-your-app/
+
+6. 
