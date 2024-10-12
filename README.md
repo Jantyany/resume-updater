@@ -35,4 +35,6 @@ blog.streamlit.io/streamlit-authenticator-part-1-adding-an-authentication-compon
 
 https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso#option-2-individual-password-for-each-user
 
+https://docs.streamlit.io/develop/tutorials/databases
+
 6. 
