@@ -17,12 +17,12 @@ A simple Streamlit app template for you to modify!
    git lfs install
    git lfs track "google-chrome.deb"
    ```
-to add to git repo
-
+to add chrome.deb to git repo using Large File System (LFS)
+   ```
    git add google-chrome.deb
    git add .gitattributes
    git commit -m "Add google-chrome.deb using Git LFS"
-
+   ```
 
 2. Run the app
 
