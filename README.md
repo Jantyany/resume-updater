@@ -24,8 +24,17 @@ to add chrome.deb to git repo using Large File System (LFS)
    git commit -m "Add google-chrome.deb using Git LFS"
    ```
 
-2. Run the app
+3. Run the app
 
    ```
    $ streamlit run streamlit_app.py
    ```
+4. considering authentication
+   
+blog.streamlit.io/streamlit-authenticator-part-1-adding-an-authentication-component-to-your-app/
+
+https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso#option-2-individual-password-for-each-user
+
+https://docs.streamlit.io/develop/tutorials/databases
+
+6. 
