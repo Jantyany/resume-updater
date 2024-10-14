@@ -1,12 +1,14 @@
 import openai
 import logging
 import pandas as pd
+import streamlit as st
 
 # Initialize logger
 logger = logging.getLogger(__name__)
 
 def get_chgpt_api_key():
-    return list(pd.read_csv(chgptcsv))[0]
+    return st.secrets("chgpt_api_key")
+    # return list(pd.read_csv(chgptcsv))[0]
 
 def call_openai_with_retry(prompt, max_retries=3, retry_delay=5):
     retries = 0

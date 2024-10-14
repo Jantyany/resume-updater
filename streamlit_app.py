@@ -2,9 +2,12 @@ import streamlit as st
 from handle_processes.screens import *
 from load_screen.intro_screen import load_intro
 from handle_processes.run_resume_process import process_resume_button
+from models.chatgpt_models import get_chgpt_api_key
 
 # st.session_state.buttondict = load_intro()
 uploaded_document,input_url,selected_option,process_button = load_intro()
+
+st.markdown(get_chgpt_api_key())
 
 if process_button:
     st.markdown(f'button pushed')
