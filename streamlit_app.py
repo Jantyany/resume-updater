@@ -12,4 +12,10 @@ logger = logging.getLogger(__name__)
 uploaded_document,input_url,selected_option,process_button = load_intro()
 
 if process_button:
-    process_resume_button(uploaded_document,input_url,selected_option)
+    if uploaded_document is None:
+        st.markdown(f'please upload a docx resume document')
+    elif input_url is None:
+        st.markdown(f'please a target job url')
+    else:
+        process_resume_button(uploaded_document,input_url,selected_option)
+  
