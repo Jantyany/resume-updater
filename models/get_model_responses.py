@@ -141,26 +141,22 @@ def run_model(job_description_path:str,current_cv:str,current_cv_filename:str,ta
 
   company_name=company_name_jobrole_name_extraction(model,job_description_path)
   
+  filedict = {}
+
   jd=jd_extractor(target_job,model)
-  create_output_button('job_description',jd,model,company_name)
-  
+  jd_docx,jd_docx_name=create_output_file('job_description',jd,model,company_name)
+  # create_output_button('job_description',jd,model,company_name)
+  filedict[jd_docx_name]=jd_docx
+
   new_resume=resume_rewriter(current_cv,jd,model)
   new_resume_filename = current_cv_filename.replace('.docx','')
-  create_output_button(new_resume_filename,new_resume,model,company_name)
+  new_resume_docx,new_resume_docx_name=create_output_file(new_resume_filename,new_resume,model,company_name)
+  # create_output_button(new_resume_filename,new_resume,model,company_name)
+  filedict[new_resume_docx_name]=new_resume_docx
 
   cover_letter = cover_letter_writer(new_resume,target_job,model)
-  create_output_button('cover_letter_',cover_letter,model,company_name)
+  cover_letter_docx,cover_letter_name=create_output_file('cover_letter_',cover_letter,model,company_name)
+  # create_output_button('cover_letter_',cover_letter,model,company_name)
+  filedict[cover_letter_name]=cover_letter_docx
 
-  # # print('job description:',jd)
-  # new_resume_docx=resume_rewriter(current_cv,jd,model)
-
-  # new_cvpath=cvpath.replace(".docx",company_name+"_"+model+".docx")
-  # # save_string_to_docx(new_resume, new_cvpath)
-
-  # cover_letter = cover_letter_writer(new_resume,target_job,model)
-
-  # cl_path=os.path.join(os.path.dirname(cvpath),'cover_letter_'+company_name+'_'+model+'.docx')
-  # # save_string_to_docx(cover_letter, cl_path)
-
-  # print('model',model,'company_name:',company_name,'new_resume:',new_resume,'cover_letter:',cover_letter)
-  # log_file_paths(cvpath, job_description_path, model,new_cvpath,cl_path)
+  
