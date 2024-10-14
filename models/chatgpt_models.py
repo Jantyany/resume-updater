@@ -39,11 +39,11 @@ def call_openai_with_retry(prompt, max_retries=3, retry_delay=5):
         #     retry_delay *= 2  # Exponential backoff for subsequent retries
 
         # except ClientError as err:
-        except openai.error.OpenAIError as err:
-            logger.error(
-                f"OpenAI Error: {err}"
-            )
-            raise  # Reraise the exception if it's not a rate limit issue
+        # except openai.error.OpenAIError as err:
+        #     logger.error(
+        #         f"OpenAI Error: {err}"
+        #     )
+        #     raise  # Reraise the exception if it's not a rate limit issue
         except Exception as e:
             # Handle any other unexpected errors
             logger.error(
