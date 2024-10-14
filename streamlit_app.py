@@ -1,34 +1,7 @@
 import streamlit as st
-from app_installer.installer import install_chrome
-from file_readers_writers.docx_reader import extract_docx_text
-from web_readers.html_readers import get_html_job
-from load_screen.intro_screen import load_intro
-from models.get_model_responses import run_model
+from handle_processes.screens import *
 
-uploaded_document,input_url,selected_option,process_button = load_intro()
- 
-# # Display the selected option
-# st.write(f"You selected: {selected_option}")
-
-# Button to trigger processing
-if process_button:
-    #Check file is Docx
-
-    # Call the Python function that handles the uploaded document and URL
-    process_inputs(uploaded_document, input_url)
-   
-    if selected_option == "ChatGPT 4o":
-        run_model(job_description_path,current_cv,target_job,'ch4')
-    elif selected_option == "Claude Instant v1":
-        run_model(job_description_path,current_cv,target_job,'cl1')
-    elif selected_option=="Claude v3 Haiku":
-        run_model(job_description_path,current_cv,target_job,'cl3')
-
-# print('target job:',target_job)
-# for m in models:
-#   if m=='cl1':
-#     run_model(job_description_path,current_cv,target_job,m)
-#   elif m=='cl3':
-#     run_model(job_description_path,current_cv,target_job,m)
-#   elif m=='ch4':
-#     run_model(job_description_path,current_cv,target_job,m)
+# Initialize session state for screen if not already set
+if 'screen' not in st.session_state:
+    st.session_state.screen = 'home'  # Default screen
+    switch_screen(st.session_state.screen)

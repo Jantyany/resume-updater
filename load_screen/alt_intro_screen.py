@@ -1,6 +1,6 @@
 import streamlit as st
 
-def load_intro():
+def load_alt_intro():
     st.title("resume highlighter app")
 
     bullet_points = """
@@ -37,11 +37,10 @@ def load_intro():
 
     # st.markdown(':gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift:')
     st.markdown(' ')
-    process_button=st.button("Process resume to fit target job")
+    process_button=st.button("Click to load the old screen")
 
     return {'uploaded_document':uploaded_document,\
             'input_url':input_url,\
             'selected_option':selected_option,\
-            'process_button':process_button}
-    # # Display the selected option
+            'process_button':process_button}    # # Display the selected option
     # st.write(f"You selected: {selected_option}")
