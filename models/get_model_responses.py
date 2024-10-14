@@ -144,6 +144,12 @@ def run_model(job_description_path:str,current_cv:str,target_job:str,model:str):
   # jd_path=os.path.join(os.path.dirname(cvpath),'job_description_'+company_name+'_'+model+'.docx')
   jd_docx = save_string_to_docx(jd)
   jd_docx_bin = save_docx_to_binary(jd_docx)
+  # Check if data is binary
+  if isinstance(jd_docx_bin, (bytes, bytearray)):
+      st.write("The data is in binary format.")
+  else:
+      st.write("The data is NOT in binary format.")  
+
   jd_button_description='job_description_'+company_name+'_'+model+'.docx'
   st.markdown(jd_button_description)
   # Create a download button for the job description docx file
@@ -151,7 +157,7 @@ def run_model(job_description_path:str,current_cv:str,target_job:str,model:str):
       label="job description download",
       data=jd_docx_bin,
       file_name=jd_button_description,
-      mime="docx"
+      mime="application/octet-stream"
   )
 
 
