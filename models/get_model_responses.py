@@ -3,7 +3,7 @@ import streamlit as st
 import logging
 from models.chatgpt_models import get_resp_chgpt
 from models.aws_models import get_resp_cl1,get_resp_cl3
-from load_screen.create_buttons import create_output_button
+from load_screen.create_buttons import create_output_file,create_zip_output_button
 
 def get_resp_chgpt(prompt):
   """
@@ -159,4 +159,4 @@ def run_model(job_description_path:str,current_cv:str,current_cv_filename:str,ta
   # create_output_button('cover_letter_',cover_letter,model,company_name)
   filedict[cover_letter_name]=cover_letter_docx
 
-  
+  create_zip_output_button(filedict)

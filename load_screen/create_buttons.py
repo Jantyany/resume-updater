@@ -36,8 +36,8 @@ def create_zip(file_dict):
     # Create a new ZIP file in the BytesIO buffer
     with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
         # Add multiple files to the ZIP archive
-        for key, value in file_dict.items()
-        zip_file.writestr(value, key)
+        for key, value in file_dict.items():
+            zip_file.writestr(value, key)
     
     # Move the buffer's pointer to the beginning
     zip_buffer.seek(0)
@@ -45,17 +45,17 @@ def create_zip(file_dict):
     return zip_buffer
 
 def create_zip_output_button(file_dict):
-  
-  # Generate the ZIP file
-  zip_data=create_zip(file_dict)
+    
+    # Generate the ZIP file
+    zip_data=create_zip(file_dict)
 
-# Create a download button for the ZIP file
-st.download_button(
-    label="Download ZIP of job description, updated resume and cover letter",
-    data=zip_data,  # The generated ZIP archive
-    file_name="revised_output.zip",  # Name of the downloadable file
-    mime="application/zip"  # MIME type for ZIP files
-)
+    # Create a download button for the ZIP file
+    st.download_button(
+        label="Download ZIP of job description, updated resume and cover letter",
+        data=zip_data,  # The generated ZIP archive
+        file_name="revised_output.zip",  # Name of the downloadable file
+        mime="application/zip"  # MIME type for ZIP files
+    )
 #   # Create a download button for the job description docx file
 #   st.download_button(
 #       label=text_type+" download",
