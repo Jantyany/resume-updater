@@ -15,9 +15,9 @@ def process_resume_button(uploaded_document,input_url,selected_option):
     if selected_option == "ChatGPT 4o":
         run_model(input_url,extracted_docx_text,extracted_html_text,'ch4')
     elif selected_option == "Claude Instant v1":
-        run_model((input_url,extracted_docx_text,extracted_html_text,'cl1')
+        run_model(input_url,extracted_docx_text,extracted_html_text,'cl1')
     elif selected_option=="Claude v3 Haiku":
-        run_model((input_url,extracted_docx_text,extracted_html_text,'cl3')
+        run_model(input_url,extracted_docx_text,extracted_html_text,'cl3')
 
     # uploaded_document,input_url,selected_option,process_button,resume_download_button = load_downloads(resume_data, resume_name)    
 
