@@ -1,4 +1,4 @@
-from chatgpt_models import call_openai_with_retry
+from models.chatgpt_models import call_openai_with_retry
 
 def get_resp_chgpt(prompt):
   """
@@ -28,7 +28,7 @@ def company_name_jobrole_name_extraction(model,target_job):
   elif model == 'ch4':
     return get_resp_chgpt(f"extract the company name and the job/ role title from the following job description as a single string with an underscore delimiter with no comment or description: {target_job}")
   
-  def jd_extractor(target_job,model):
+def jd_extractor(target_job,model):
   """
   Invokes model to run an inference using the input
   provided in the request body.

@@ -1,6 +1,6 @@
 from docx import Document
 import os
-
+  
 def extract_docx_text(file_path):
   """
   Extracts text from a docx file including formatting.
@@ -12,14 +12,42 @@ def extract_docx_text(file_path):
     A string containing the extracted text with formatting.
   """
   try:
-    doc = Document(file_path)
-    fullText = []
-    for para in doc.paragraphs:
-      fullText.append(para.text)
-    return '\n'.join(fullText)
+    # Handle .docx files
+    if document is not None:
+        # Check if the uploaded file is a .docx file
+        if document.name.endswith(".docx"):
+            # Read and process the .docx file using the Document function from the python-docx package
+            doc = Document(document)  # Read the uploaded document
+            # doc_text = "\n".join([para.text for para in doc.paragraphs])  # Extract all text from the document
+            # st.write("Document content (DOCX):")
+            # st.write(doc_text)
+            fullText = []
+            for para in doc.paragraphs:
+              fullText.append(para.text)
+            return '\n'.join(fullText)
   except Exception as e:
     print(f"Error extracting text from docx file: {e}")
     return None
+
+# def extract_docx_text(file_path):
+#   """
+#   Extracts text from a docx file including formatting.
+
+#   Args:
+#     file_path: Path to the docx file.
+
+#   Returns:
+#     A string containing the extracted text with formatting.
+#   """
+#   try:
+#     doc = Document(file_path)
+#     fullText = []
+#     for para in doc.paragraphs:
+#       fullText.append(para.text)
+#     return '\n'.join(fullText)
+#   except Exception as e:
+#     print(f"Error extracting text from docx file: {e}")
+#     return None
 
 def extract_folder_and_filename(filepath):
   """

@@ -2,29 +2,27 @@ import streamlit as st
 from app_installer.installer import install_chrome
 from file_readers_writers.docx_reader import extract_docx_text
 from web_readers.html_readers import get_html_job
+from load_screen.intro_screen import load_intro
+from models.get_model_responses import run_model
 
-# install_chrome()
+uploaded_document,input_url,selected_option = load_intro()
+ 
+# # Display the selected option
+# st.write(f"You selected: {selected_option}")
 
-chrometext = get_html_job("https://www.google.com")
-st.success(f"Successfully lodaed page title: {chrometext[:100]}")
+# Button to trigger processing
+if st.button("Process"):
+    #Check file is Docx
 
-# st.title("🎈 My new Streamlit app")
-st.title("Resume Document and job URL Processor")
-
-st.write(
-    "Upload your resume document below"
-)
-
-# File uploader widget
-uploaded_document = st.file_uploader("Upload a resume document in docx format", \
-                                     type=["docx"])
-
-# Text input for URL
-input_url = st.text_input("Enter a URL")
-
-# current_cv = extract_docx_text(cvpath)
-
-# target_job=get_html_job(job_description_path)
+    # Call the Python function that handles the uploaded document and URL
+    process_inputs(uploaded_document, input_url)
+   
+    if selected_option == "ChatGPT 4o":
+        run_model(job_description_path,current_cv,target_job,'ch4')
+    elif selected_option == "Claude Instant v1":
+        run_model(job_description_path,current_cv,target_job,'cl1')
+    elif selected_option=="Claude v3 Haiku":
+        run_model(job_description_path,current_cv,target_job,'cl3')
 
 # print('target job:',target_job)
 # for m in models:
