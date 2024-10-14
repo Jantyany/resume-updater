@@ -9,17 +9,15 @@ from models.get_model_responses import run_model
 def process_resume_button(uploaded_document,input_url,selected_option):
     
     extracted_docx_text=extract_docx_text(uploaded_document)
-    st.markdown(extracted_docx_text)
 
     extracted_html_text=get_html_job(input_url)
-    st.markdown(extracted_html_text)
 
     if selected_option == "ChatGPT 4o":
-        resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'ch4')
+        run_model(input_url,extracted_docx_text,extracted_html_text,'ch4')
     elif selected_option == "Claude Instant v1":
-        resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'cl1')
+        run_model((input_url,extracted_docx_text,extracted_html_text,'cl1')
     elif selected_option=="Claude v3 Haiku":
-        resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'cl3')
+        run_model((input_url,extracted_docx_text,extracted_html_text,'cl3')
 
     # uploaded_document,input_url,selected_option,process_button,resume_download_button = load_downloads(resume_data, resume_name)    
 
