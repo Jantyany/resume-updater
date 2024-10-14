@@ -21,9 +21,10 @@ def get_resp_chgpt(prompt):
 
   except Exception as err:
       logger.error(
-          "Couldn't invoke Chatgpt 4. Here's why: %s: %s",
-          err.response["Error"]["Code"],
-          err.response["Error"]["Message"],
+          "Couldn't invoke Chatgpt 4. Here's why: "\
+            # + "%s: %s",
+          # err.response["Error"]["Code"],
+          # err.response["Error"]["Message"],
       )
       raise
   
@@ -150,7 +151,7 @@ def run_model(job_description_path:str,current_cv:str,target_job:str,model:str):
   st.download_button(
       label="job description download",
       data=jd_docx,
-      file_name=jd_button,
+      file_name=jd_button_description,
       mime="docx"
   )
 
