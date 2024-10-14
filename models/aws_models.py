@@ -1,27 +1,30 @@
 import boto3
 
+def get_aws_api_key():
+    return list(pd.read_csv(acccsv))[0],list(pd.read_csv(seccsv))[0]
 
 def get_resp_cl3(prompt):
+    return get_resp_template(prompt, 'anthropic.claude-3-haiku-20240307-v1:0')
+
+def get_resp_cl1(prompt):
+    return get_resp_template(prompt, 'anthropic.claude-instant-v1')
+
+def get_resp_template(prompt, model_id):
     """
-    Invokes Anthropic Claude 3 Sonnet to run an inference using the input
+    Invokes AWS foundation models to run an inference using the input
     provided in the request body.
 
     :param prompt: The prompt that you want Claude 3 to complete.
     :return: Inference response from the model.
     """
 
-    acc=list(pd.read_csv(acccsv))[0]
-    sec=list(pd.read_csv(seccsv))[0]
+    acc,sec=get_aws_api_key()
 
     # Initialize the Amazon Bedrock runtime client
 
     client = boto3.client(
         service_name="bedrock-runtime", region_name="us-west-2",aws_access_key_id=acc,aws_secret_access_key=sec
     )
-
-    # Invoke Claude 3 with the text prompt
-    # model_id = "anthropic.claude-3-sonnet-20240229-v1:0"
-    model_id = 'anthropic.claude-3-haiku-20240307-v1:0'
 
     try:
         response = client.invoke_model(
@@ -45,8 +48,6 @@ def get_resp_cl3(prompt):
         input_tokens = result["usage"]["input_tokens"]
         output_tokens = result["usage"]["output_tokens"]
         output_list = result.get("content", [])
-
-
         return result['content'][0]['text']
 
     except ClientError as err:
@@ -56,5 +57,3 @@ def get_resp_cl3(prompt):
             err.response["Error"]["Message"],
         )
         raise
-
-

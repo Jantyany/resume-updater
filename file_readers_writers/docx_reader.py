@@ -35,3 +35,15 @@ def extract_folder_and_filename(filepath):
   folder_path = os.path.dirname(filepath)
   filename = os.path.basename(filepath)
   return folder_path, filename
+
+def get_folder_path(filepath):
+  """
+  Retrieves the folder path from an absolute filepath.
+
+  Args:
+    filepath: The absolute path to the file.
+
+  Returns:
+    The folder path.
+  """
+  return os.path.dirname(filepath)
