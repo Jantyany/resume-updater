@@ -14,5 +14,5 @@ def create_output_button(text_type,text,model,company_name):
       label=text_type+" download",
       data=text_docx_bin,
       file_name=text_docx_button_description,
-      mime="application/octet-stream"
+      mime="docx"
   )
