@@ -35,7 +35,7 @@ def load_intro():
         ["ChatGPT 4o", "Claude Instant v1", "Claude v3 Haiku"]  # List of options
     )
 
-    st.markdown(':gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift:')
+    # st.markdown(':gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift:')
     st.markdown(' ')
     process_button=st.button("Process resume to fit target job")
 
