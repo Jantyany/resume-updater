@@ -11,7 +11,7 @@ def create_output_button(text_type,text,model,company_name):
   st.markdown(text_docx_button_description) 
   # Create a download button for the job description docx file
   st.download_button(
-      label="job description download",
+      label=text_type+" download",
       data=text_docx_bin,
       file_name=text_docx_button_description,
       mime="application/octet-stream"
