@@ -1,4 +1,5 @@
 from models.chatgpt_models import call_openai_with_retry
+import streamlit as st
 
 def get_resp_chgpt(prompt):
   """
@@ -135,20 +136,30 @@ def run_model(job_description_path:str,current_cv:str,target_job:str,model:str):
 
   company_name=company_name_jobrole_name_extraction(model,job_description_path)
   jd=jd_extractor(target_job,model)
-  jdpath=os.path.join(os.path.dirname(cvpath),'job_description_'+company_name+'_'+model+'.docx')
-  save_string_to_docx(jd, jdpath)
+  # jd_path=os.path.join(os.path.dirname(cvpath),'job_description_'+company_name+'_'+model+'.docx')
+  jd_docx = save_string_to_docx(jd, jdpath)
+  jd_button_description='job_description_'+company_name+'_'+model+'.docx'
+  ct.markdown(jd_button_description)
+  # Create a download button for the job description docx file
+  st.download_button(
+      label="job description download",
+      data=jd_docx,
+      file_name=jd_button,
+      mime="docx"
+  )
 
 
-  print('job description:',jd)
-  new_resume=resume_rewriter(current_cv,jd,model)
 
-  new_cvpath=cvpath.replace(".docx",company_name+"_"+model+".docx")
-  save_string_to_docx(new_resume, new_cvpath)
+  # # print('job description:',jd)
+  # new_resume_docx=resume_rewriter(current_cv,jd,model)
 
-  cover_letter = cover_letter_writer(new_resume,target_job,model)
+  # new_cvpath=cvpath.replace(".docx",company_name+"_"+model+".docx")
+  # # save_string_to_docx(new_resume, new_cvpath)
 
-  cl_path=os.path.join(os.path.dirname(cvpath),'cover_letter_'+company_name+'_'+model+'.docx')
-  save_string_to_docx(cover_letter, cl_path)
+  # cover_letter = cover_letter_writer(new_resume,target_job,model)
 
-  print('model',model,'company_name:',company_name,'new_resume:',new_resume,'cover_letter:',cover_letter)
-  log_file_paths(cvpath, job_description_path, model,new_cvpath,cl_path)
+  # cl_path=os.path.join(os.path.dirname(cvpath),'cover_letter_'+company_name+'_'+model+'.docx')
+  # # save_string_to_docx(cover_letter, cl_path)
+
+  # print('model',model,'company_name:',company_name,'new_resume:',new_resume,'cover_letter:',cover_letter)
+  # log_file_paths(cvpath, job_description_path, model,new_cvpath,cl_path)

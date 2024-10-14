@@ -14,15 +14,12 @@ def process_resume_button(uploaded_document,input_url,selected_option):
     extracted_html_text=get_html_job(input_url)
     st.markdown(extracted_html_text)
 
-    # Call the Python function that handles the uploaded document and URL
-    # process_inputs(uploaded_document, input_url)
-
-    # if selected_option == "ChatGPT 4o":
-    #     resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'ch4')
-    # elif selected_option == "Claude Instant v1":
-    #     resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'cl1')
-    # elif selected_option=="Claude v3 Haiku":
-    #     resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'cl3')
+    if selected_option == "ChatGPT 4o":
+        resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'ch4')
+    elif selected_option == "Claude Instant v1":
+        resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'cl1')
+    elif selected_option=="Claude v3 Haiku":
+        resume_data, resume_name = run_model(job_description_path,current_cv,target_job,'cl3')
 
     # uploaded_document,input_url,selected_option,process_button,resume_download_button = load_downloads(resume_data, resume_name)    
 

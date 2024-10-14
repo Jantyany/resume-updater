@@ -7,8 +7,6 @@ from models.chatgpt_models import get_chgpt_api_key
 # st.session_state.buttondict = load_intro()
 uploaded_document,input_url,selected_option,process_button = load_intro()
 
-st.markdown(get_chgpt_api_key())
-
 if process_button:
     st.markdown(f'button pushed')
     process_resume_button(uploaded_document,input_url,selected_option)

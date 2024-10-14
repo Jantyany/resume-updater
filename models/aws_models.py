@@ -1,7 +1,9 @@
 import boto3
+import streamlit as st
 
 def get_aws_api_key():
-    return list(pd.read_csv(acccsv))[0],list(pd.read_csv(seccsv))[0]
+    return st.secrets.aws_credentials.aws_key,st.secrets.aws_credentials.aws_secret
+    # return list(pd.read_csv(acccsv))[0],list(pd.read_csv(seccsv))[0]
 
 def get_resp_cl3(prompt):
     return get_resp_template(prompt, 'anthropic.claude-3-haiku-20240307-v1:0')

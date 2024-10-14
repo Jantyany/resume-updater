@@ -12,7 +12,8 @@ def save_string_to_docx(text, filepath):
     doc = Document()
     #bold_text=convert_to_bold(text)
     doc.add_paragraph(text)
-    doc.save(filepath)
-    print(f"File saved successfully to: {filepath}")
+    return doc
+    # doc.save(filepath)
+    # print(f"File saved successfully to: {filepath}")
   except Exception as e:
     print(f"Error saving file: {e}")
