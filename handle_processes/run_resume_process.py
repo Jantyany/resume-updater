@@ -8,16 +8,16 @@ from models.get_model_responses import run_model
 
 def process_resume_button(uploaded_document,input_url,selected_option):
     
-    extracted_docx_text=extract_docx_text(uploaded_document)
+    extracted_docx_text, docx_filename=extract_docx_text(uploaded_document)
 
     extracted_html_text=get_html_job(input_url)
 
     if selected_option == "ChatGPT 4o":
-        run_model(input_url,extracted_docx_text,extracted_html_text,'ch4')
+        run_model(input_url,extracted_docx_text,docx_filename,extracted_html_text,'ch4')
     elif selected_option == "Claude Instant v1":
-        run_model(input_url,extracted_docx_text,extracted_html_text,'cl1')
+        run_model(input_url,extracted_docx_text,docx_filename,extracted_html_text,'cl1')
     elif selected_option=="Claude v3 Haiku":
-        run_model(input_url,extracted_docx_text,extracted_html_text,'cl3')
+        run_model(input_url,extracted_docx_text,docx_filename,extracted_html_text,'cl3')
 
     # uploaded_document,input_url,selected_option,process_button,resume_download_button = load_downloads(resume_data, resume_name)    
 

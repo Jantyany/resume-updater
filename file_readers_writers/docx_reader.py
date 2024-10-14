@@ -24,7 +24,7 @@ def extract_docx_text(document):
             fullText = []
             for para in doc.paragraphs:
               fullText.append(para.text)
-            return '\n'.join(fullText)
+            return '\n'.join(fullText), document.name
   except Exception as e:
     print(f"Error extracting text from docx file: {e}")
     return None

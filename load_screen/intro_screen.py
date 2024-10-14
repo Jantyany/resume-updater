@@ -32,7 +32,8 @@ def load_intro():
     # Dropdown menu with three options
     selected_option = st.selectbox(
         "Choose an LLM model:",  # Label for the dropdown
-        ["ChatGPT 4o", "Claude Instant v1", "Claude v3 Haiku"]  # List of options
+        # ["ChatGPT 4o", "Claude Instant v1", "Claude v3 Haiku"]  # List of options
+        ["Claude Instant v1", "Claude v3 Haiku"]
     )
 
     # st.markdown(':gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift:')

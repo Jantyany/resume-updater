@@ -3,7 +3,7 @@ import streamlit as st
 import logging
 from models.chatgpt_models import get_resp_chgpt
 from models.aws_models import get_resp_cl1,get_resp_cl3
-from file_readers_writers.docx_writer import save_string_to_docx,save_docx_to_binary
+from load_screen.create_buttons import create_output_button
 
 def get_resp_chgpt(prompt):
   """
@@ -137,30 +137,19 @@ def cover_letter_writer(new_cv,target_job,model):
   elif model == 'ch4':
     return get_resp_chgpt(cl_prompt_1)
   
-def run_model(job_description_path:str,current_cv:str,target_job:str,model:str):
+def run_model(job_description_path:str,current_cv:str,current_cv_filename:str,target_job:str,model:str):
 
   company_name=company_name_jobrole_name_extraction(model,job_description_path)
+  
   jd=jd_extractor(target_job,model)
-  # jd_path=os.path.join(os.path.dirname(cvpath),'job_description_'+company_name+'_'+model+'.docx')
-  jd_docx = save_string_to_docx(jd)
-  jd_docx_bin = save_docx_to_binary(jd_docx)
-  # Check if data is binary
-  if isinstance(jd_docx_bin, (bytes, bytearray)):
-      st.write("The data is in binary format.")
-  else:
-      st.write("The data is NOT in binary format.")  
+  create_output_button('job_description',jd,model,company_name)
+  
+  new_resume=resume_rewriter(current_cv,jd,model)
+  new_resume_filename = current_cv_filename.replace('.docx','')
+  create_output_button(new_resume_filename,new_resume,model,company_name)
 
-  jd_button_description='job_description_'+company_name+'_'+model+'.docx'
-  st.markdown(jd_button_description)
-  # Create a download button for the job description docx file
-  st.download_button(
-      label="job description download",
-      data=jd_docx_bin,
-      file_name=jd_button_description,
-      mime="application/octet-stream"
-  )
-
-
+  cover_letter = cover_letter_writer(new_resume,target_job,model)
+  create_output_button('cover_letter_',cover_letter,model,company_name)
 
   # # print('job description:',jd)
   # new_resume_docx=resume_rewriter(current_cv,jd,model)

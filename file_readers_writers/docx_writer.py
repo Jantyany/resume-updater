@@ -1,6 +1,6 @@
 from docx import Document
 from io import BytesIO
-
+import streamlit as st
 
 def save_string_to_docx(text):
   """
@@ -31,6 +31,11 @@ def save_docx_to_binary(docx):
     buffer = BytesIO()
     docx.save(buffer)
     docx_binary = buffer.getvalue()  # Extract the binary data
-    return docx_binary
+    # Check if data is binary
+    if isinstance(docx_binary, (bytes, bytearray)):
+        # st.write("The data is in binary format.")
+        return docx_binary
+    else:
+        st.write("The data is NOT in binary format to provide for download.") 
   except Exception as e:
     print(f"Error converting file: {e}")
