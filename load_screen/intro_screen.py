@@ -4,7 +4,7 @@ def load_intro():
     st.title("resume highlighter app")
 
     bullet_points = """
-    - Enter your CV or resume
+    - Enter your CV or resume in docx format
 
     - Enter your target job url
 
@@ -12,7 +12,6 @@ def load_intro():
 
     - press the Process button
     """
-    st.markdown(bullet_points)
 
     # st.title("Enter your CV/ resume,
     #          your target job url,\r 
@@ -24,11 +23,11 @@ def load_intro():
     # )
 
     # File uploader widget
-    uploaded_document = st.file_uploader("Upload a resume document in docx format", \
+    uploaded_document = st.file_uploader("Enter your CV or resume in docx format", \
                                         type=["docx"])
 
     # Text input for URL
-    input_url = st.text_input("Enter a  URL")
+    input_url = st.text_input("Enter your target job url")
 
     # Dropdown menu with three options
     selected_option = st.selectbox(
@@ -36,6 +35,10 @@ def load_intro():
         ["ChatGPT 4o", "Claude Instant v1", "Claude v3 Haiku"]  # List of options
     )
 
-    return uploaded_document,input_url,selected_option
+    st.markdown(':gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift: :gift:')
+
+    process_button=st.button("Process resume to fit target job")
+
+    return uploaded_document,input_url,selected_option,process_button
     # # Display the selected option
     # st.write(f"You selected: {selected_option}")

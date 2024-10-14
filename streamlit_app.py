@@ -5,13 +5,13 @@ from web_readers.html_readers import get_html_job
 from load_screen.intro_screen import load_intro
 from models.get_model_responses import run_model
 
-uploaded_document,input_url,selected_option = load_intro()
+uploaded_document,input_url,selected_option,process_button = load_intro()
  
 # # Display the selected option
 # st.write(f"You selected: {selected_option}")
 
 # Button to trigger processing
-if st.button("Process"):
+if process_button:
     #Check file is Docx
 
     # Call the Python function that handles the uploaded document and URL
