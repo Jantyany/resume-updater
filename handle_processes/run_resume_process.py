@@ -6,9 +6,13 @@ from load_screen.alt_intro_screen import load_alt_intro
 from load_screen.download_screen import load_downloads
 from models.get_model_responses import run_model
 
-def process_resume_button():
+def process_resume_button(uploaded_document,input_url,selected_option):
     
-    #Check file is Docx
+    extracted_docx_text=extract_docx_text(uploaded_document)
+    st.markdown(extracted_docx_text)
+
+    extracted_html_text=get_html_job(input_url)
+    st.markdown(extracted_html_text)
 
     # Call the Python function that handles the uploaded document and URL
     # process_inputs(uploaded_document, input_url)
