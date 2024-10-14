@@ -21,8 +21,8 @@ def get_resp_chgpt(prompt):
 
   except Exception as err:
       logger.error(
-          "Couldn't invoke Chatgpt 4. Here's why: "\
-            # + "%s: %s",
+          "error"
+          # "Couldn't invoke Chatgpt 4. Here's why: %s: %s",
           # err.response["Error"]["Code"],
           # err.response["Error"]["Message"],
       )
