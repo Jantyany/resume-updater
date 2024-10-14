@@ -2,9 +2,8 @@ import openai
 import logging
 import pandas as pd
 import streamlit as st
-
-# Initialize logger
-logger = logging.getLogger(__name__)
+from openai.error import RateLimitError, OpenAIError
+import time
 
 def get_chgpt_api_key():
     return st.secrets.chgpt_api_key
@@ -12,7 +11,10 @@ def get_chgpt_api_key():
 
 def call_openai_with_retry(prompt, max_retries=3, retry_delay=5):
     retries = 0
-    
+
+    # Initialize logger
+    logger = logging.getLogger(__name__)
+
     openai.api_key = get_chgpt_api_key()
     while retries < max_retries:
         try:
@@ -47,3 +49,25 @@ def call_openai_with_retry(prompt, max_retries=3, retry_delay=5):
     logger.error("Max retries reached. Could not complete the request.")
     raise Exception("Rate limit error after multiple retries")
 
+def get_resp_chgpt(prompt):
+  """
+  Invokes Chatgpt to run an inference using the input
+  provided in the request body.
+
+  :param prompt: The prompt that you want Claude 3 to complete.
+  :return: Inference response from the model.
+  """
+
+  # Initialize logger
+  logger = logging.getLogger(__name__)
+  
+  try:
+    return call_openai_with_retry(prompt)
+
+  except Exception as err:
+      logger.error(
+          "Couldn't invoke Chatgpt 4. Here's why: %s: %s",
+          err.response["Error"]["Code"],
+          err.response["Error"]["Message"],
+      )
+      raise

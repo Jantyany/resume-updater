@@ -1,5 +1,7 @@
 import boto3
 import streamlit as st
+import json
+import logging
 
 def get_aws_api_key():
     return st.secrets.aws_credentials.aws_key,st.secrets.aws_credentials.aws_secret
@@ -19,6 +21,8 @@ def get_resp_template(prompt, model_id):
     :param prompt: The prompt that you want Claude 3 to complete.
     :return: Inference response from the model.
     """
+    # Initialize logger
+    logger = logging.getLogger(__name__)
 
     acc,sec=get_aws_api_key()
 

@@ -1,6 +1,6 @@
 from docx import Document
 
-def save_string_to_docx(text, filepath):
+def save_string_to_docx(text):
   """
   Saves a string to a docx file.
 
