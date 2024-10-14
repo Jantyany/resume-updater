@@ -2,7 +2,7 @@ import openai
 import logging
 import pandas as pd
 import streamlit as st
-from openai.error import RateLimitError, OpenAIError
+# from openai.error import RateLimitError, OpenAIError
 import time
 
 def get_chgpt_api_key():
@@ -28,14 +28,14 @@ def call_openai_with_retry(prompt, max_retries=3, retry_delay=5):
             )
             return response['choices'][0]['message']['content']
 
-        except RateLimitError as e:
-            logger.warning(
-                "Rate limit reached: %s. Retrying in %s seconds...",
-                e, retry_delay
-            )
-            time.sleep(retry_delay)  # Wait before retrying
-            retries += 1
-            retry_delay *= 2  # Exponential backoff for subsequent retries
+        # except RateLimitError as e:
+        #     logger.warning(
+        #         "Rate limit reached: %s. Retrying in %s seconds...",
+        #         e, retry_delay
+        #     )
+        #     time.sleep(retry_delay)  # Wait before retrying
+        #     retries += 1
+        #     retry_delay *= 2  # Exponential backoff for subsequent retries
 
         except ClientError as err:
             logger.error(
@@ -60,7 +60,7 @@ def get_resp_chgpt(prompt):
 
   # Initialize logger
   logger = logging.getLogger(__name__)
-  
+
   try:
     return call_openai_with_retry(prompt)
 
