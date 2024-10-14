@@ -1,7 +1,7 @@
 import streamlit as st
 
 def load_intro():
-    st.title("resume highlighter app")
+    st.title("resume assistant app")
 
     # bullet_points = """
     # - Enter your CV or resume in docx format
