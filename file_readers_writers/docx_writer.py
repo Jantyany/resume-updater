@@ -1,4 +1,6 @@
 from docx import Document
+from io import BytesIO
+
 
 def save_string_to_docx(text):
   """
@@ -17,3 +19,18 @@ def save_string_to_docx(text):
     # print(f"File saved successfully to: {filepath}")
   except Exception as e:
     print(f"Error saving file: {e}")
+
+def save_docx_to_binary(docx):
+  """
+  convert a docx file to binary.
+
+  Args:
+    docx: The file to be converted.
+  """
+  try:
+    buffer = BytesIO()
+    docx.save(buffer)
+    docx_binary = buffer.getvalue()  # Extract the binary data
+    return docx_binary
+  except Exception as e:
+    print(f"Error converting file: {e}")
