@@ -20,13 +20,11 @@ def get_resp_chgpt(prompt):
     return call_openai_with_retry(prompt)
 
   except Exception as err:
-      logger.error(
-          "error"
-          # "Couldn't invoke Chatgpt 4. Here's why: %s: %s",
-          # err.response["Error"]["Code"],
-          # err.response["Error"]["Message"],
-      )
-      raise
+    # Handle any other unexpected errors
+    logger.error(
+        f"Unexpected Error: {err}"
+    )
+    raise
   
 def company_name_jobrole_name_extraction(model,target_job):
   if model == 'cl1':

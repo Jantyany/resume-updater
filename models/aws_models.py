@@ -56,10 +56,18 @@ def get_resp_template(prompt, model_id):
         output_list = result.get("content", [])
         return result['content'][0]['text']
 
-    except ClientError as err:
+    # except ClientError as err:
+    except client.exceptions.NoSuchEntityException as err:
         logger.error(
             "Couldn't invoke Claude 3 Sonnet. Here's why: %s: %s",
             err.response["Error"]["Code"],
             err.response["Error"]["Message"],
         )
-        raise
+        raise  # Reraise the exception if it's not a rate limit issue
+    except Exception as e:
+        # Handle any other unexpected errors
+        logger.error(
+            f"Unexpected Error: {e}"
+        )
+
+

@@ -27,6 +27,7 @@ def call_openai_with_retry(prompt, max_retries=3, retry_delay=5):
                 temperature=0.7
             )
             return response['choices'][0]['message']['content']
+         
 
         # except RateLimitError as e:
         #     logger.warning(
@@ -37,14 +38,18 @@ def call_openai_with_retry(prompt, max_retries=3, retry_delay=5):
         #     retries += 1
         #     retry_delay *= 2  # Exponential backoff for subsequent retries
 
-        except ClientError as err:
+        # except ClientError as err:
+        except openai.error.OpenAIError as err:
             logger.error(
-                "Couldn't invoke ChatGPT. Here's why: %s: %s",
-                err.response["Error"]["Code"],
-                err.response["Error"]["Message"],
+                f"OpenAI Error: {err}"
             )
             raise  # Reraise the exception if it's not a rate limit issue
-
+        except Exception as e:
+            # Handle any other unexpected errors
+            logger.error(
+                f"Unexpected Error: {e}"
+            )
+                
     # If we run out of retries, raise an exception
     logger.error("Max retries reached. Could not complete the request.")
     raise Exception("Rate limit error after multiple retries")
