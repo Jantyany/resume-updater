@@ -153,6 +153,7 @@ def run_model(job_description_path:str,current_cv:str,current_cv_filename:str,ta
   new_resume_filename = current_cv_filename.replace('.docx','')
   # new_resume_docx,new_resume_docx_name=create_output_file(new_resume_filename,new_resume,model,company_name)
   create_output_button(new_resume_filename,new_resume,model,company_name)
+  
   # filedict[new_resume_docx_name]=new_resume_docx
 
   # cover_letter = cover_letter_writer(new_resume,target_job,model)
