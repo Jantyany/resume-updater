@@ -3,7 +3,8 @@ import streamlit as st
 import logging
 from models.chatgpt_models import get_resp_chgpt
 from models.aws_models import get_resp_cl1,get_resp_cl3
-from load_screen.create_buttons import create_output_file,create_zip_output_button
+from file_readers_writers.writers import create_output_file
+from load_screen.create_buttons import create_zip_output_button
 
 def get_resp_chgpt(prompt):
   """
